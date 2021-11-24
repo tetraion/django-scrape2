@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from app_scrape import views as app_scrape
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include("app_scrape.urls")),
+    path('', app_scrape.IndexView.as_view()),
 ]
