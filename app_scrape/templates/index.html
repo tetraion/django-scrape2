@@ -11,7 +11,7 @@
         {{ field }}
     </p>
     {% endfor %}
-    <input type="submit" value="検索" name="nomal" class="btn btn-info" />
+    <input type="submit" value="相場検索" name="nomal" class="btn btn-info" />
     <input type="submit" value="最安値検索" name="min" class="btn btn-info" />
 
 </form>
@@ -33,7 +33,10 @@
         </tr>
         {% endfor %}
     </table>
+    <h3>{{ave_price}}</h3>
 </div>
+
+
 
 <!-- </div>
 <div class="col-19 col-sm-9">
