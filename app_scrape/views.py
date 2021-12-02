@@ -4,7 +4,7 @@ from requests.models import Response
 
 from . import forms
 
-from . import scraping2 as b
+from . import scraping 
 
 import json
 import requests
@@ -27,16 +27,23 @@ class IndexView(FormView):
         
 
         if request.method == 'POST':
-                if "nomal" in request.POST:
-        # ①
-                   print("確定ボタンが押下された")
-                elif "min"  in request.POST:
-        # ②
-                    print("キャンセルボタン押下された")
-        data_rakuten = b.sea(search)
+            if "nomal" in request.POST:
+                data_rakuten = scraping.sea(search)
+                total = 0
+                for datum in data_rakuten:
+                    total = total + datum[3]
+                    
+                ave_price = total/len(data_rakuten)
+                ave_price = "平均価格"+str(ave_price)
+            elif "min"  in request.POST:
+                data_rakuten = scraping.sea_min(search)
 
+                ave_price = data_rakuten[0][3]
+                ave_price = "最安価格"+str(ave_price)
+        
+        
         kekka = "楽天"
 
 
-        ctxt = self.get_context_data(data_rakuten=data_rakuten, kekka="検索結果_"+kekka, form=form)
+        ctxt = self.get_context_data(data_rakuten=data_rakuten, kekka="検索結果_"+kekka, form=form, ave_price=ave_price)
         return self.render_to_response(ctxt)
