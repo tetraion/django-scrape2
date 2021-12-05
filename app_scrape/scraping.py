@@ -15,18 +15,20 @@ def sea(goods):
 
     data_rakuten = []
 
-    for item in items:
+    for index, item in enumerate(items):
         title = item.select_one('.title').text.replace('\n', '')
         price = item.select_one('.price').text.replace(
             '\n', '').replace(' ', '')
         url = item.find('a').get('href')
         price_num = item.find('span', attrs={'class': 'important'}).text.replace('円','').replace(',','')
         price_num = int(price_num)
+        num = index + 1
+
 
         # print('商品名：{}　価格：{}'.format(title,price))
         # print('-'*30)
         # print(url)
-        data_rakuten.append([title, price, url, price_num])
+        data_rakuten.append([title, price, url, price_num, num])
 
         if n > 9:
             break
@@ -47,7 +49,7 @@ def sea_min(goods):
 
     data_rakuten = []
 
-    for item in items:
+    for index, item in enumerate(items):
         title = item.select_one('.title').text.replace('\n', '')
         price = item.select_one('.price').text.replace(
             '\n', '').replace(' ', '')
@@ -55,11 +57,12 @@ def sea_min(goods):
         
         price_num = item.find('span', attrs={'class': 'important'}).text.replace('円','').replace(',','')
         price_num = int(price_num)
+        num = index + 1
 
         # print('商品名：{}　価格：{}'.format(title,price))
         # print('-'*30)
         # print(url)
-        data_rakuten.append([title, price, url, price_num])
+        data_rakuten.append([title, price, url, price_num, num])
 
         if n > 10:
             break

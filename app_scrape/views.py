@@ -1,4 +1,4 @@
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView
 from requests.api import request
 from requests.models import Response
 
@@ -14,9 +14,9 @@ class IndexView(FormView):
     form_class = forms.TextForm
     template_name = "index.html"
 
-    def a(request):
-        a = request.post
-        print(a)
+    def a():
+        
+        print("a")
 
 
     def form_valid(self, form):
@@ -40,6 +40,9 @@ class IndexView(FormView):
 
                 ave_price = data_rakuten[0][3]
                 ave_price = "最安価格"+str(ave_price)
+            elif "fav" in request.POST:
+                # scraping.fav(request.)
+                print('a')
         
         
         kekka = "楽天"
@@ -47,3 +50,7 @@ class IndexView(FormView):
 
         ctxt = self.get_context_data(data_rakuten=data_rakuten, kekka="検索結果_"+kekka, form=form, ave_price=ave_price)
         return self.render_to_response(ctxt)
+
+
+class FavView(TemplateView):
+    template_name = "fav.html"
