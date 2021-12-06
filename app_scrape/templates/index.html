@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block main %}
-
+<a href="{% url 'fav_list' %}">お気に入り一覧</a>
 <form method="post">
     {% csrf_token %}
     {% for field in form %}
@@ -15,21 +15,27 @@
     <input type="submit" value="最安値検索" name="min" class="btn btn-info" />
 
 </form>
+
+
+
 <h2>{{kekka}}</h2>
 <div class="container">
+
     <!-- <div class="row">
         <div class="col-19 col-sm-9"> -->
     <table>
         <tr>
+            <th class="4" width="60" height="10">No</th>
             <th class="1" width="700" height="10">商品名</th>
             <th class="2" width="200" height="10">価格</th>
             <th class="3" width="100" height="10">URL</th>
         </tr>
         {% for detum in data_rakuten %}
         <tr>
+            <td><a href="{% url 'fav_add' %}?name={{detum.0}}&price={{detum.1}}&url={{detum.2}}">{{detum.4}}</a></td>
             <td width="700" height="10">{{detum.0}}</td>
             <td width="200" height="20">{{detum.1}}</td>
-            <td width="100" height="10"><a href= {{detum.2}}>リンク</a></td>
+            <td width="100" height="10"><a href={{detum.2}}>リンク</a></td>
         </tr>
         {% endfor %}
     </table>
