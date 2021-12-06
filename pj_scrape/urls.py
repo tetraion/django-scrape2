@@ -20,5 +20,6 @@ from app_scrape import views as app_scrape
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app_scrape.IndexView.as_view()),
-    path('fav/', app_scrape.FavView.as_view()),
+    path('fav_add/', app_scrape.Create.as_view(), name='fav_add'),
+    path('fav_list/', app_scrape.FavView.as_view(), name='fav_list'),
 ]

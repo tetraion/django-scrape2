@@ -13,5 +13,10 @@ class TextForm(forms.Form):
     
     search = forms.CharField(label="品名", widget=widgets_textinput)
 
+class FavForm(forms.Form):
+    name = forms.CharField(label="商品名", widget=widgets_textinput)
+    price = forms.CharField(label="価格", widget=forms.Textarea(attrs={'cols': '80', 'rows': '10'}))
+    url = forms.CharField(label="URL")
+
 
     
